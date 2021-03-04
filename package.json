@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.1",
   "description": "Turns Gfycat's lowercase ID to CamelCase formatted ID. The example: lazyfatcat turns to LazyFatCat.",
-  "main": "index.js",
+  "main": "js/index.js",
   "scripts": {
     "bundle": "node bundle-dictionaries.js"
   },
