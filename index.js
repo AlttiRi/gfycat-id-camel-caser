@@ -4,7 +4,7 @@ main();
 
 
 async function main() {
-    const {adjectives: adjectivesArray, animals : animalsArray} = await getWords();
+    const {adjectives: adjectivesArray, animals: animalsArray} = await getWords();
     const adjectives = new Set(adjectivesArray.map(el => el.toLocaleLowerCase()));
     const animals = new Set(animalsArray.map(el => el.toLocaleLowerCase()));
 
@@ -71,30 +71,7 @@ async function main() {
             }
         }
     }
-
-
-
-
-    //todo delete
-    // [unused]
-    function handleOld(event) {
-        let result = "";
-        let current = "";
-        for (const char of inputElem.value.toLocaleLowerCase()) {
-            current += char;
-            if (animals.has(current) || adjectives.has(current)) {
-                result += current.charAt(0).toLocaleUpperCase() + current.substring(1);
-                current = "";
-            }
-        }
-        if (result) {
-            resultElem.textContent = result;
-        } else {
-            resultElem.textContent = ".";
-        }
-    }
 }
-
 
 
 async function getWords() {

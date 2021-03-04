@@ -1,14 +1,17 @@
 {
-  "name": "gfy-camel-caser",
+  "name": "gfycat-id-camel-caser",
   "type": "module",
-  "version": "1.0.0",
-  "description": "Turns Gfycat's lowercase ID to CamelCase ID. The example: lazyfatcat turns to LazyFatCat",
+  "version": "1.0.1",
+  "description": "Turns Gfycat's lowercase ID to CamelCase formatted ID. The example: lazyfatcat turns to LazyFatCat.",
   "main": "index.js",
   "scripts": {
     "bundle": "node bundle-dictionaries.js"
   },
   "keywords": ["demo", "site"],
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/AlttiRi/gfycat-id-camel-caser"
+  },
   "devDependencies": {
     "@types/node": "^14.14.31"
   }
