@@ -1,21 +1,14 @@
-import {WordQueues} from "./words-handler.js";
+import {WordQueues} from "./api.js";
 
 main();
 
-
 async function main() {
-    const {adjectives: adjectivesArray, animals: animalsArray} = await getWords();
-    const adjectives = new Set(adjectivesArray.map(el => el.toLowerCase()));
-    const animals = new Set(animalsArray.map(el => el.toLowerCase()));
-
-    Object.assign(globalThis, {adjectives, animals});
-    console.log(adjectives, animals);
-
     const inputElem = document.querySelector("input");
     const resultElem = document.querySelector("#result");
 
     inputElem.addEventListener("input", handle);
 
+    await WordQueues.init();
     function handle(event) {
         const inputString = inputElem.value.toLowerCase().replaceAll(/[^a-z]/g, "");
 
@@ -74,10 +67,4 @@ async function main() {
 }
 
 
-async function getWords() {
-    const animalsPromise = fetch("./dictionaries/animals.json").then(resp => resp.json());
-    const adjectivesPromise = fetch("./dictionaries/adjectives.json").then(resp => resp.json());
 
-    const [animals, adjectives] = await Promise.all([animalsPromise, adjectivesPromise]);
-    return {animals, adjectives};
-}

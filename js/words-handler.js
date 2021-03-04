@@ -1,3 +1,60 @@
+import {getWords} from "./api.js";
+
+class Types {
+    /** @type {Set<String>}*/
+    static adjectives;
+    /** @type {Set<String>}*/
+    static animals;
+
+    static getTypes(word) {
+        const types = [];
+        Types.animals.has(word)    && types.push("animal");
+        Types.adjectives.has(word) && types.push("adjective");
+        return types;
+    }
+
+    static _inited = false;
+    static _initialization = false;
+    static _initedResolve;
+    static _initedPromise = new Promise(resolve => {
+        this._initedResolve = resolve;
+    });
+    static async _init() {
+        if (this._initialization || Types._inited) {
+            return;
+        }
+        this._initialization = true;
+        await this.initLogic();
+        this._initedResolve();
+        this._initedPromise = Promise.resolve();
+        this._inited = true;
+        this._initialization = false;
+        console.log(this.name, "inited");
+    }
+    static get inited() {
+        return this._initedPromise;
+    }
+    static async init() {
+        if (!this._inited) {
+            await this._init();
+        }
+        return this.inited;
+    }
+    static async initLogic() {
+        const {adjectives: adjectivesArray, animals: animalsArray} = await getWords();
+        const adjectives = new Set(adjectivesArray.map(el => el.toLowerCase()));
+        const animals = new Set(animalsArray.map(el => el.toLowerCase()));
+
+        this.adjectives = adjectives;
+        this.animals = animals;
+    }
+}
+
+// todo
+class Initializable {
+
+}
+
 class Word {
     /** @type {String} */
     value;
@@ -47,6 +104,45 @@ export class WordQueue {
 export class WordQueues {
     queues = [new WordQueue()];
 
+    static _inited = false;
+    static _initialization = false;
+    static _initedResolve;
+    static _initedPromise = new Promise(resolve => {
+        this._initedResolve = resolve;
+    });
+    static async _init() {
+        if (this._initialization || this._inited) {
+            return;
+        }
+        this._initialization = true;
+
+        await this.initLogic();
+
+        this._initedResolve();
+        this._initedPromise = Promise.resolve();
+        this._inited = true;
+        this._initialization = false;
+        console.log(this.name, "inited");
+    }
+    static get inited() {
+        return this._inited;
+    }
+    static async init() {
+        if (!this._inited) {
+            await this._init();
+        }
+        return this._initedPromise;
+    }
+    static async initLogic() {
+        await Types.init();
+    }
+
+    constructor() {
+        if (!WordQueues.inited) {
+            WordQueues.init();
+        }
+    }
+
     handle(inputString) {
         for (const char of inputString) {
             this.enqueue(char);
@@ -56,19 +152,12 @@ export class WordQueues {
     enqueue(char) {
         this.queues.forEach(queue => { // Warn: Array self modifying. Use only forEach.
             const currentWord = queue.append(char);
-            let types = WordQueues.getTypes(currentWord);
+            let types = Types.getTypes(currentWord);
             if (types.length) {
                 this.queues.push(queue.copy()); // [!here]
                 queue.enqueueWord({types});
             }
         });
-    }
-
-    static getTypes(word) {
-        let types = [];
-        animals.has(word) && types.push("animal");
-        adjectives.has(word) && types.push("adjective");
-        return types;
     }
 
     /**
