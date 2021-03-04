@@ -1,0 +1,15 @@
+{
+  "name": "gfy-camel-caser",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Turns Gfycat's lowercase ID to CamelCase ID. The example: lazyfatcat turns to LazyFatCat",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "node bundle-dictionaries.js"
+  },
+  "keywords": ["demo", "site"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^14.14.31"
+  }
+}
