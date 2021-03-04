@@ -1,6 +1,6 @@
 // From:
 // https://github.com/dexo568/gfycat-style-urls/blob/master/animals.js
-// https://gist.github.com/borlaym/585e2e09dd6abd9b0d0
+// https://gist.github.com/borlaym/585e2e09dd6abd9b0d0a
 export const animals = [
     "Aardvark",
     "Albatross",
