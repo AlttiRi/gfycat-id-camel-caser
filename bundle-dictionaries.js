@@ -24,7 +24,7 @@ function getWords() {
         ...handle(adjectives2),
         ...handle(adjectives3),
     ]);
-    return {animals: [...animals], adjectives: [...adjectives]};
+    return {animals: [...animals].sort(), adjectives: [...adjectives].sort()};
 
     function handle(array) {
         return array.map(el => el.toLowerCase().replaceAll(/[^a-z]/g, ""));
