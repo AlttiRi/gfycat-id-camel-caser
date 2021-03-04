@@ -1,5 +1,44 @@
 import {getWords} from "./api.js";
 
+class Initializer {
+    get inited() {
+        return this._inited;
+    }
+    async init() {
+        if (this._initialization) {
+            await this._initedPromise;
+        } else if (!this._inited) {
+            await this._init();
+        }
+    }
+    constructor(self, initLogic, run = false) {
+        this._target = self;
+        this._initLogic = initLogic;
+        if (run) {
+            this._init();
+        }
+    }
+
+    _inited = false;
+    _initialization = false;
+    _initedResolve;
+    _initedPromise = new Promise(resolve => {
+        this._initedResolve = resolve;
+    });
+    async _init() {
+        if (this._initialization || Types._inited) {
+            return;
+        }
+        this._initialization = true;
+        await this._initLogic.call(this._target);
+        this._initedResolve();
+        this._initedPromise = Promise.resolve();
+        this._inited = true;
+        this._initialization = false;
+        console.log(this._target?.name, "inited");
+    }
+}
+
 class Types {
     /** @type {Set<String>}*/
     static adjectives;
@@ -13,34 +52,10 @@ class Types {
         return types;
     }
 
-    static _inited = false;
-    static _initialization = false;
-    static _initedResolve;
-    static _initedPromise = new Promise(resolve => {
-        this._initedResolve = resolve;
-    });
-    static async _init() {
-        if (this._initialization || Types._inited) {
-            return;
-        }
-        this._initialization = true;
-        await this.initLogic();
-        this._initedResolve();
-        this._initedPromise = Promise.resolve();
-        this._inited = true;
-        this._initialization = false;
-        console.log(this.name, "inited");
-    }
-    static get inited() {
-        return this._initedPromise;
-    }
-    static async init() {
-        if (!this._inited) {
-            await this._init();
-        }
-        return this.inited;
-    }
-    static async initLogic() {
+    static get inited() { return this._initializer.inited; }
+    static init() { return this._initializer.init(); }
+    static _initializer = new Initializer(this, this._initLogic);
+    static async _initLogic() {
         const {adjectives: adjectivesArray, animals: animalsArray} = await getWords();
         const adjectives = new Set(adjectivesArray.map(el => el.toLowerCase()));
         const animals = new Set(animalsArray.map(el => el.toLowerCase()));
@@ -48,11 +63,6 @@ class Types {
         this.adjectives = adjectives;
         this.animals = animals;
     }
-}
-
-// todo
-class Initializable {
-
 }
 
 class Word {
@@ -104,43 +114,11 @@ export class WordQueue {
 export class WordQueues {
     queues = [new WordQueue()];
 
-    static _inited = false;
-    static _initialization = false;
-    static _initedResolve;
-    static _initedPromise = new Promise(resolve => {
-        this._initedResolve = resolve;
-    });
-    static async _init() {
-        if (this._initialization || this._inited) {
-            return;
-        }
-        this._initialization = true;
-
-        await this.initLogic();
-
-        this._initedResolve();
-        this._initedPromise = Promise.resolve();
-        this._inited = true;
-        this._initialization = false;
-        console.log(this.name, "inited");
-    }
-    static get inited() {
-        return this._inited;
-    }
-    static async init() {
-        if (!this._inited) {
-            await this._init();
-        }
-        return this._initedPromise;
-    }
-    static async initLogic() {
+    static get inited() { return this._initializer.inited; }
+    static init() { return this._initializer.init(); }
+    static _initializer = new Initializer(this, this._initLogic, true);
+    static async _initLogic() {
         await Types.init();
-    }
-
-    constructor() {
-        if (!WordQueues.inited) {
-            WordQueues.init();
-        }
     }
 
     handle(inputString) {
