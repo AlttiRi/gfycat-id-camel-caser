@@ -5,8 +5,8 @@ main();
 
 async function main() {
     const {adjectives: adjectivesArray, animals: animalsArray} = await getWords();
-    const adjectives = new Set(adjectivesArray.map(el => el.toLocaleLowerCase()));
-    const animals = new Set(animalsArray.map(el => el.toLocaleLowerCase()));
+    const adjectives = new Set(adjectivesArray.map(el => el.toLowerCase()));
+    const animals = new Set(animalsArray.map(el => el.toLowerCase()));
 
     Object.assign(globalThis, {adjectives, animals});
     console.log(adjectives, animals);
