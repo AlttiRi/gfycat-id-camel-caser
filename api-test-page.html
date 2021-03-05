@@ -6,11 +6,11 @@
 </head>
 <body>
     <script>
-        async function initIframe() {
+        async function initIframeAPI({src, name}) {
             const iframe = document.createElement("iframe");
             iframe.setAttribute("sandbox", "allow-scripts");
             iframe.setAttribute("style", "display: none;");
-            iframe.setAttribute("src", "https://alttiri.github.io/gfycat-id-camel-caser/iframe-api.html");
+            iframe.setAttribute("src", src);
 
             document.body.append(iframe);
             await new Promise(resolve => {
@@ -19,13 +19,13 @@
 
             let i = 0; const seed = Math.random();
             return async function matchGfyId(wordsString) {
-                const id = `gfy-id:${seed}:${i++}`;
+                const id = `${name}:${seed}:${i++}`;
                 iframe.contentWindow.postMessage({wordsString, id}, "*");
                 return new Promise(resolve => {
                     window.addEventListener("message", event => {
-                        const {result, from, messageId} = event.data;
-                        if (from === "gfy-id-camel-caser" && id === messageId) {
-                            resolve(result);
+                        const {data, from, messageId} = event.data;
+                        if (name === from && id === messageId) {
+                            resolve(data);
                         }
                     });
                 });
@@ -33,7 +33,10 @@
         }
 
         !async function main() {
-            const matchGfyId = await initIframe();
+            const matchGfyId = await initIframeAPI({
+                src: "https://alttiri.github.io/gfycat-id-camel-caser/iframe-api.html",
+                name: "gfy-id-camel-caser"
+            });
             globalThis.matchGfyId = matchGfyId; // for testing in the console
 
             // The example
