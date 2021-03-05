@@ -10,9 +10,9 @@
 
     /**
      * @typedef MatchResultLike
-     * @property {WordQueue} wordQueue
-     * @property {Boolean} typed
-     * @property {String[]} types
+     * @property {WordQueue|null} wordQueue
+     * @property {Boolean|null} typed
+     * @property {String[]} types - the expected types order
      * @property {String} inputString
      * @property {String} string - the additional property instead of the overrided `toString` method.
      */
@@ -24,11 +24,11 @@
         /** @type {MatchResult} */
         const result = await matchString(wordsString);
 
-        // The overrided toString() will be unavailable.
+        // The overrided toString() of `wordQueue` will be unavailable.
         /** @type {MatchResultLike} */
         const _result = {
             ...result,
-            string: result.wordQueue.toString()
+            string: result.wordQueue?.toString() || ""
         };
 
         console.log("API result:", _result);

@@ -10,9 +10,9 @@ export async function getWords() {
 
 /**
  * @typedef MatchResult
- * @property {WordQueue} wordQueue
- * @property {Boolean} typed
- * @property {String[]} types
+ * @property {WordQueue|null} wordQueue
+ * @property {Boolean|null} typed
+ * @property {String[]} types - the expected types order
  * @property {String} inputString
  */
 
@@ -29,7 +29,7 @@ export async function matchString(inputString) {
     const types = ["adjective", "adjective", "animal"];
     const resultWordQueue = wordQueues.getMoreAppropriateStringByPattern(types);
 
-    let wordQueue, typed;
+    let wordQueue = null, typed = null;
     if (resultWordQueue) {
         wordQueue = resultWordQueue;
         typed = true;
