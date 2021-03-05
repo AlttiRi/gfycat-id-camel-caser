@@ -18,9 +18,9 @@
             });
 
             let i = 0; const seed = Math.random();
-            async function matchGfyId(words) {
+            return async function matchGfyId(wordsString) {
                 const id = `gfy-id:${seed}:${i++}`;
-                iframe.contentWindow.postMessage({words, id}, "*");
+                iframe.contentWindow.postMessage({wordsString, id}, "*");
                 return new Promise(resolve => {
                     window.addEventListener("message", event => {
                         const {result, from, messageId} = event.data;
@@ -30,17 +30,16 @@
                     });
                 });
             }
-            return matchGfyId;
         }
 
         !async function main() {
             const matchGfyId = await initIframe();
+            globalThis.matchGfyId = matchGfyId; // for testing in the console
 
+            // The example
             /** @type {MatchResultLike} */
             const result = await matchGfyId("redbluecat");
-
             console.log("matchGfyId:", result.string);
-            globalThis.matchGfyId = matchGfyId; // for testing in the console
         }();
     </script>
 </body>

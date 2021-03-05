@@ -35,7 +35,7 @@ class Initializer {
         this._initedPromise = Promise.resolve();
         this._inited = true;
         this._initialization = false;
-        console.log(this._target?.name, "inited");
+        // console.log(this._target?.name, "inited");
     }
 }
 

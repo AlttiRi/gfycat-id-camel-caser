@@ -18,10 +18,10 @@
      */
 
     window.onmessage = async function(event) {
-        const {data: {words, id}, source, origin} = event;
-        console.log("API input:", {data: {words, id}, source, origin}, event);
+        const {data: {wordsString, id}, source, origin} = event;
+        // console.log("API input:", {data: {wordsString, id}, source, origin}, event);
         /** @type {MatchResult} */
-        const result = await matchString(words);
+        const result = await matchString(wordsString);
 
         // The overrided toString() will be unavailable.
         /** @type {MatchResultLike} */
@@ -30,7 +30,7 @@
             string: result.wordQueue.toString()
         };
 
-        console.log("API result:", _result);
+        // console.log("API result:", _result);
         source.postMessage({
             result: _result,
             from: "gfy-id-camel-caser",
