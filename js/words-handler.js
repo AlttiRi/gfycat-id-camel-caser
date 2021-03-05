@@ -26,7 +26,7 @@ class Initializer {
         this._initedResolve = resolve;
     });
     async _init() {
-        if (this._initialization || Types._inited) {
+        if (this._initialization || this._inited) {
             return;
         }
         this._initialization = true;
@@ -39,6 +39,7 @@ class Initializer {
     }
 }
 
+// Well, probably it makes more sense to inject the data instead of the self initialization, but let it be so.
 class Types {
     /** @type {Set<String>}*/
     static adjectives;
@@ -79,7 +80,7 @@ class Word {
     }
 }
 
-export class WordQueue {
+class WordQueue {
     /** @type {Array<Word>} */
     words;
     /** @type {String} */
