@@ -17,12 +17,14 @@
                 iframe.addEventListener("load", resolve);
             });
 
+            let i = 0; const seed = Math.random();
             async function matchGfyId(words) {
-                iframe.contentWindow.postMessage(words, "*");
+                const id = `gfy-id:${seed}:${i++}`;
+                iframe.contentWindow.postMessage({words, id}, "*");
                 return new Promise(resolve => {
                     window.addEventListener("message", event => {
-                        const {result, from} = event.data;
-                        if (from === "gfy-id-camel-caser") {
+                        const {result, from, messageId} = event.data;
+                        if (from === "gfy-id-camel-caser" && id === messageId) {
                             resolve(result);
                         }
                     });
