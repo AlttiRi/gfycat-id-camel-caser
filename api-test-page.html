@@ -18,9 +18,9 @@
             });
 
             let i = 0; const seed = Math.random();
-            return async function matchGfyId(wordsString) {
+            return function(inputData) {
                 const id = `${name}:${seed}:${i++}`;
-                iframe.contentWindow.postMessage({wordsString, id}, "*");
+                iframe.contentWindow.postMessage({inputData, id}, "*");
                 return new Promise(resolve => {
                     window.addEventListener("message", event => {
                         const {data, from, messageId} = event.data;
