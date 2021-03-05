@@ -9,6 +9,7 @@
         async function initIframeAPI({src, name}) {
             const iframe = document.createElement("iframe");
             iframe.setAttribute("sandbox", "allow-scripts");
+            iframe.setAttribute("referrerpolicy", "no-referrer"); // Hide to GitHub from where you use this iframe.
             iframe.setAttribute("style", "display: none;");
             iframe.setAttribute("src", src);
 
