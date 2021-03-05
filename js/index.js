@@ -76,9 +76,10 @@ async function initIframeAPI({src, name}) {
     });
 
     let i = 0; const seed = Math.random();
-    return function(inputData) {
+    return function() {
+        const inputArguments = [...arguments];
         const id = `${name}:${seed}:${i++}`;
-        iframe.contentWindow.postMessage({inputData, id}, "*"); // Only "*". new URL(src).origin does not work with "sandbox" iframe. A stupid limitation.
+        iframe.contentWindow.postMessage({inputArguments, id}, "*"); // Only "*". new URL(src).origin does not work with "sandbox" iframe. A stupid limitation.
         let promiseResolve;
         const handler = event => {
             const {data, from, messageId} = event.data;
