@@ -27,21 +27,23 @@ export async function matchString(inputString) {
     wordQueues.handle(inputString);
 
     const types = ["adjective", "adjective", "animal"];
-    const options = {types, inputString: _inputString};
-
     const resultWordQueue = wordQueues.getMoreAppropriateStringByPattern(types);
+
+    let wordQueue, typed;
     if (resultWordQueue) {
-        Object.assign(options, {
-            wordQueue: resultWordQueue,
-            typed: true
-        });
+        wordQueue = resultWordQueue;
+        typed = true;
     } else {
         const resultWordQueue = wordQueues.getResultSimple();
         if (resultWordQueue) {
-            Object.assign(options, {
-                wordQueue: resultWordQueue,
-                typed: false
-            });
+            wordQueue = resultWordQueue;
+            typed = false;
         }
     }
+    return {
+        wordQueue,
+        inputString: _inputString,
+        types,
+        typed
+    };
 }
