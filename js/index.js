@@ -7,7 +7,11 @@ async function main() {
     const resultElem = document.querySelector("#result");
 
     const url = new URL(location.href);
-    const useIframeApi = JSON.parse(url.searchParams.get("iframe"));
+    const useIframeApi = (function() {
+        try {
+            return JSON.parse(url.searchParams.get("iframe"));
+        } catch { return false; }
+    })();
 
     if (useIframeApi) {
         globalThis.matchString = await initIframeAPI({
