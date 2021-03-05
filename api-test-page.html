@@ -16,15 +16,29 @@
             await new Promise(resolve => {
                 iframe.addEventListener("load", resolve);
             });
-            return iframe;
+
+            async function matchGfyId(words) {
+                iframe.contentWindow.postMessage(words, "*");
+                return new Promise(resolve => {
+                    window.addEventListener("message", event => {
+                        const {result, from} = event.data;
+                        if (from === "gfy-id-camel-caser") {
+                            resolve(result);
+                        }
+                    });
+                });
+            }
+            return matchGfyId;
         }
 
         !async function main() {
-            const iframe = await initIframe();
-            iframe.contentWindow.postMessage("redbluecat", "*");
-            window.addEventListener("message", event => {
-                console.log(event.data, event);
-            });
+            const matchGfyId = await initIframe();
+
+            /** @type {MatchResultLike} */
+            const result = await matchGfyId("redbluecat");
+
+            console.log("matchGfyId:", result.string);
+            globalThis.matchGfyId = matchGfyId; // for testing in the console
         }();
     </script>
 </body>

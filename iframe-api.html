@@ -8,12 +8,33 @@
 <script type="module">
     import {matchString} from "./js/api.js";
 
+    /**
+     * @typedef MatchResultLike
+     * @property {WordQueue} wordQueue
+     * @property {Boolean} typed
+     * @property {String[]} types
+     * @property {String} inputString
+     * @property {String} string - the additional property instead of the overrided `toString` method.
+     */
+
     window.onmessage = async function(event) {
         const {data, source, origin} = event;
         console.log("API input:", {data, source, origin}, event);
+        /** @type {MatchResult} */
         const result = await matchString(data);
-        console.log("API result:", result);
-        source.postMessage({result, from: "gfy-id-camel-caser"}, origin);
+
+        // The overrided toString() will be unavailable.
+        /** @type {MatchResultLike} */
+        const _result = {
+            ...result,
+            string: result.wordQueue.toString()
+        };
+
+        console.log("API result:", _result);
+        source.postMessage({
+            result: _result,
+            from: "gfy-id-camel-caser"
+        }, origin);
     };
 </script>
 </body>
