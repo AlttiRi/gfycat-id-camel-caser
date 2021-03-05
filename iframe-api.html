@@ -13,7 +13,7 @@
         console.log("API input:", {data, source, origin}, event);
         const result = await matchString(data);
         console.log("API result:", result);
-        source.postMessage(result, origin);
+        source.postMessage({result, from: "gfy-id-camel-caser"}, origin);
     };
 </script>
 </body>
