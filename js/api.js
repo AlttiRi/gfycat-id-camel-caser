@@ -28,7 +28,7 @@ export async function matchGfyId(inputString, types = ["adjective", "adjective",
     const _inputString = inputString.toLowerCase().replaceAll(/[^a-z]/g, "");
     await WordQueues.init();
     const wordQueues = new WordQueues();
-    wordQueues.handle(inputString);
+    wordQueues.handle(_inputString);
 
     const resultWordQueue = wordQueues.getMoreAppropriateStringByPattern(types);
 
