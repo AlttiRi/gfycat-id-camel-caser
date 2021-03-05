@@ -20,7 +20,7 @@
     const iframeApiName = "gfy-id-camel-caser";
     window.onmessage = async function(event) {
         const {data: {inputData: wordsString, id}, source, origin} = event;
-        // console.log("API input:", {data: {inputData: wordsString, id}, source, origin}, event);
+        console.log("API input:", {data: {inputData: wordsString, id}, source, origin}, event);
         /** @type {MatchResult} */
         const result = await matchString(wordsString);
 
@@ -31,7 +31,7 @@
             string: result.wordQueue.toString()
         };
 
-        // console.log("API result:", _result);
+        console.log("API result:", _result);
         source.postMessage({
             data: _result,
             from: iframeApiName,
