@@ -11,7 +11,7 @@ export async function getWords() {
 /**
  * @typedef MatchResult
  * @property {WordQueue|null} wordQueue - `null` if no word found
- * @property {Boolean|null} typed - is type order is matched (partially or no)
+ * @property {Boolean|null} typed - if the type order is matched (partially (at least the first word) or no)
  * @property {String[]} types - the expected types order
  * @property {String} inputString - the input string after simplification
  * @property {String} string - the equal of `wordQueue?.toString()` or "".
