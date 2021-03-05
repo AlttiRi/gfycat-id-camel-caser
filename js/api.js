@@ -19,15 +19,15 @@ export async function getWords() {
 
 /**
  * @param {String} inputString
+ * @param {String[]} types
  * @return {Promise<MatchResult>}
  */
-export async function matchString(inputString) {
+export async function matchString(inputString, types = ["adjective", "adjective", "animal"]) {
     const _inputString = inputString.toLowerCase().replaceAll(/[^a-z]/g, "");
     await WordQueues.init();
     const wordQueues = new WordQueues();
     wordQueues.handle(inputString);
 
-    const types = ["adjective", "adjective", "animal"];
     const resultWordQueue = wordQueues.getMoreAppropriateStringByPattern(types);
 
     let wordQueue = null, typed = null;
