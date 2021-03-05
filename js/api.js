@@ -10,10 +10,11 @@ export async function getWords() {
 
 /**
  * @typedef MatchResult
- * @property {WordQueue|null} wordQueue
- * @property {Boolean|null} typed
+ * @property {WordQueue|null} wordQueue - `null` if no word found
+ * @property {Boolean|null} typed - is type order is matched (partially or no)
  * @property {String[]} types - the expected types order
- * @property {String} inputString
+ * @property {String} inputString - the input string after simplification
+ * @property {String} string - the equal of `wordQueue?.toString()` or "".
  */
 
 /**
@@ -44,6 +45,7 @@ export async function matchString(inputString) {
         wordQueue,
         inputString: _inputString,
         types,
-        typed
+        typed,
+        string: wordQueue?.toString() || ""
     };
 }

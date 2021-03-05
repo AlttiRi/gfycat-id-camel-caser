@@ -10,11 +10,11 @@ function main() {
 
     async function inputHandler(event) {
         /** @type {MatchResult} */
-        const options = await matchString(inputElem.value);
+        const result = await matchString(inputElem.value);
 
-        if (!options.wordQueue) {
+        if (!result.wordQueue) {
             resultElem.textContent = " "; // Alt + 0160
-            if (options.inputString.length) {
+            if (result.inputString.length) {
                 resultElem.className = "no-match";
             } else {
                 resultElem.className = "empty";
@@ -24,12 +24,12 @@ function main() {
 
         /** Print "other-types" if the string doesn't match the types pattern
          * @see WordQueues.getMoreAppropriateStringByPattern */
-        console.log(options.wordQueue, options.typed ? options.types.slice(0, options.wordQueue.words.length) : "other-types");
+        console.log(result.wordQueue, result.typed ? result.types.slice(0, result.wordQueue.words.length) : "other-types");
 
-        resultElem.textContent = options.wordQueue.toString();
-        if (options.typed) {
-            const isTheSameLength = options.wordQueue.words.length === options.types.length;
-            const noTailingChars = options.wordQueue.chars.length === 0;
+        resultElem.textContent = result.string;
+        if (result.typed) {
+            const isTheSameLength = result.wordQueue.words.length === result.types.length;
+            const noTailingChars = result.wordQueue.chars.length === 0;
             if (isTheSameLength && noTailingChars) {
                 resultElem.className = "strict-match";
             } else {

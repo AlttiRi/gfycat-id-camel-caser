@@ -8,32 +8,16 @@
 <script type="module">
     import {matchString} from "./js/api.js";
 
-    /**
-     * @typedef MatchResultLike
-     * @property {WordQueue|null} wordQueue
-     * @property {Boolean|null} typed
-     * @property {String[]} types - the expected types order
-     * @property {String} inputString
-     * @property {String} string - the additional property instead of the overrided `toString` method.
-     */
-
     const iframeApiName = "gfy-id-camel-caser";
     window.onmessage = async function(event) {
         const {data: {inputData: wordsString, id}, source, origin} = event;
-        console.log("API input:", {data: {inputData: wordsString, id}, source, origin}, event);
+        // console.log("API input:", {data: {inputData: wordsString, id}, source, origin}, event);
         /** @type {MatchResult} */
         const result = await matchString(wordsString);
 
-        // The overrided toString() of `wordQueue` will be unavailable.
-        /** @type {MatchResultLike} */
-        const _result = {
-            ...result,
-            string: result.wordQueue?.toString() || ""
-        };
-
-        console.log("API result:", _result);
+        // console.log("API result:", result);
         source.postMessage({
-            data: _result,
+            data: result,
             from: iframeApiName,
             messageId: id
         }, origin);
