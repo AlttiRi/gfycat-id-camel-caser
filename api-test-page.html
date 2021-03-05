@@ -20,14 +20,18 @@
             let i = 0; const seed = Math.random();
             return function(inputData) {
                 const id = `${name}:${seed}:${i++}`;
-                iframe.contentWindow.postMessage({inputData, id}, "*");
+                iframe.contentWindow.postMessage({inputData, id}, "*"); // Only "*". new URL(src).origin does not work with "sandbox" iframe. A stupid limitation.
+                let promiseResolve;
+                const handler = event => {
+                    const {data, from, messageId} = event.data;
+                    if (name === from && id === messageId) {
+                        window.removeEventListener("message", handler);
+                        promiseResolve(data);
+                    }
+                }
                 return new Promise(resolve => {
-                    window.addEventListener("message", event => {
-                        const {data, from, messageId} = event.data;
-                        if (name === from && id === messageId) {
-                            resolve(data);
-                        }
-                    }); // todo remove listener
+                    promiseResolve = resolve;
+                    window.addEventListener("message", handler);
                 });
             }
         }
@@ -42,7 +46,7 @@
             // The example
             /** @type {MatchResult} */
             const result = await matchGfyId("redbluecat");
-            console.log("matchGfyId:", result);
+            console.log("matchGfyId:", result.string);
         }();
     </script>
 </body>
