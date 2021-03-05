@@ -11,11 +11,11 @@
     const iframeApiName = "gfy-id-camel-caser";
     window.onmessage = async function(event) {
         const {data: {inputData: wordsString, id}, source, origin} = event;
-        console.log("API input:", {data: {inputData: wordsString, id}, source, origin}, event);
+        console.log("Iframe API input:", {data: {inputData: wordsString, id}, source, origin}, event);
         /** @type {MatchResult} */
         const result = await matchString(wordsString);
 
-        console.log("API result:", result);
+        console.log("Iframe API result:", result);
         source.postMessage({
             data: result,
             from: iframeApiName,
