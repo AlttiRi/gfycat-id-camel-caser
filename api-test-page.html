@@ -39,6 +39,11 @@
         }
 
         !async function main() {
+            /**
+             * @param {String} inputString
+             * @param {TypeWord[]} types
+             * @return {Promise<MatchResult>}
+             */
             const matchGfyId = await initIframeAPI({
                 src: "https://alttiri.github.io/gfycat-id-camel-caser/iframe-api.html",
                 name: "gfy-id-camel-caser"

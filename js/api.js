@@ -17,9 +17,11 @@ export async function getWords() {
  * @property {String} string - the equal of `wordQueue?.toString()` or "".
  */
 
+
+/** @typedef {("adjective"|"animal")} TypeWord */
 /**
  * @param {String} inputString
- * @param {String[]} types
+ * @param {TypeWord[]} types
  * @return {Promise<MatchResult>}
  */
 export async function matchGfyId(inputString, types = ["adjective", "adjective", "animal"]) {
