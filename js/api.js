@@ -22,7 +22,7 @@ export async function getWords() {
  * @param {String[]} types
  * @return {Promise<MatchResult>}
  */
-export async function matchString(inputString, types = ["adjective", "adjective", "animal"]) {
+export async function matchGfyId(inputString, types = ["adjective", "adjective", "animal"]) {
     const _inputString = inputString.toLowerCase().replaceAll(/[^a-z]/g, "");
     await WordQueues.init();
     const wordQueues = new WordQueues();

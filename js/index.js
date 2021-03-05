@@ -1,4 +1,4 @@
-// import {matchString} from "./api.js";
+// import {matchGfyId} from "./api.js";
 
 main();
 
@@ -14,21 +14,21 @@ async function main() {
     })();
 
     if (useIframeApi) {
-        globalThis.matchString = await initIframeAPI({
+        globalThis.matchGfyId = await initIframeAPI({
             src: "https://alttiri.github.io/gfycat-id-camel-caser/iframe-api.html",
             name: "gfy-id-camel-caser"
         });
     } else {
         appendInlineScript(`
-            import {matchString} from "./js/api.js";
-            globalThis.matchString = matchString;
+            import {matchGfyId} from "./js/api.js";
+            globalThis.matchGfyId = matchGfyId;
         `, true);
     }
 
     inputElem.addEventListener("input", inputHandler);
     async function inputHandler(event) {
         /** @type {MatchResult} */
-        const result = await matchString(inputElem.value);
+        const result = await matchGfyId(inputElem.value);
         viewHandler(result);
     }
 

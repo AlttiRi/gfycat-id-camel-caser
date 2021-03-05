@@ -6,14 +6,14 @@
 </head>
 <body>
 <script type="module">
-    import {matchString} from "./js/api.js";
+    import {matchGfyId} from "./js/api.js";
 
     const iframeApiName = "gfy-id-camel-caser";
     window.onmessage = async function(event) {
         const {data: {inputArguments, id}, source, origin} = event;
         console.log("Iframe API input:", {data: {inputArguments, id}, source, origin}, event);
         /** @type {MatchResult} */
-        const result = await matchString(...inputArguments);
+        const result = await matchGfyId(...inputArguments);
 
         console.log("Iframe API result:", result);
         source.postMessage({
