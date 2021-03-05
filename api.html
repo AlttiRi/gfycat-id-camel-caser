@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API</title>
+</head>
+<body>
+<script type="module">
+    import {matchString} from "./js/api.js";
+
+    window.onmessage = async function(event) {
+        const {data, source, origin} = event;
+        console.log("API input:", {data, source, origin}, event);
+        const result = await matchString(data);
+        console.log("API result:", result);
+        source.postMessage(result, origin);
+    };
+</script>
+</body>
+</html>
