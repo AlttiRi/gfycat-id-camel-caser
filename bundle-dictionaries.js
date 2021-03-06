@@ -9,9 +9,7 @@ import fs from "fs/promises";
 import path from "path";
 
 
-
 await bundleJsons();
-
 
 function getWords() {
     const animals = new Set([
@@ -34,7 +32,6 @@ function getWords() {
 async function bundleJsons() {
     const {animals, adjectives} = getWords();
     logInfo({animals, adjectives});
-
 
     const animalsJson    = JSON.stringify(animals,    null," ");
     const adjectivesJson = JSON.stringify(adjectives, null," ");
