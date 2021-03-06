@@ -74,5 +74,25 @@ const matchGfyId = await initIframeAPI({
 
 /** @type {MatchResult} */
 const result = await matchGfyId("redbluecat");
-console.log(result.string);
+console.log(result.string); // "RedBlueCat"
+
+console.log(await matchGfyId("catduck", ["animal", "animal"]));
+
+```
+
+
+The code of `iframe-api.html` is pretty simple:
+```js
+import {matchGfyId} from "./js/api.js";
+
+const iframeApiName = "gfy-id-camel-caser";
+window.onmessage = async function(event) {
+    const {data: {inputArguments, id}, source, origin} = event;
+    const result = await matchGfyId(...inputArguments);
+    source.postMessage({
+        data: result,
+        from: iframeApiName,
+        messageId: id
+    }, origin);
+};
 ```
