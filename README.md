@@ -4,7 +4,7 @@ The demo site that turns Gfycat's lowercase ID to CamelCase formatted ID.
 ---
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/16310547/110215476-128ac300-7ebb-11eb-9a3a-66062a997056.png" alt="darkcreepybat -> DarkCreepyBat" title="darkcreepybat -> DarkCreepyBat"/>
+  <img src="https://user-images.githubusercontent.com/16310547/110215476-128ac300-7ebb-11eb-9a3a-66062a997056.png" alt="darkcreepybat -> DarkCreepyBat" title="darkcreepybat → DarkCreepyBat"/>
 </p>
 
 ---
@@ -26,11 +26,11 @@ It is trying to match the most longer string by pattern `["adjective", "adjectiv
 If the first is "adjective", then it looks for "adjective", then for "animal".
 If no result has found, it is looking for any word sequence available in both dictionaries (adjectives and animals).
 For example:
-- `34REDCAT` -> `Red` _("adjective")_
-- `blueredcatdog` -> `BlueRedCat` _("adjective", "adjective", "animal")_
-- `catwhitedogred` -> `CatWhiteDogRed` _(No pattern used)_
-- `happy-wideeyed-bullmastif` -> `HappyWideeyedBull`
-- `happy-wideeyed-bullmastiff` -> `HappyWideeyedBullmastiff`
+- `34REDCAT` → `Red` _("adjective")_
+- `blueredcatdog` → `BlueRedCat` _("adjective", "adjective", "animal")_
+- `catwhitedogred` → `CatWhiteDogRed` _(No pattern used)_
+- `happy-wideeyed-bullmastif` → `HappyWideeyedBull`
+- `happy-wideeyed-bullmastiff` → `HappyWideeyedBullmastiff`
 
 # iframe API
 
