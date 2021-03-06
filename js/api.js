@@ -21,7 +21,7 @@ export async function getWords() {
 /** @typedef {("adjective"|"animal")} TypeWord */
 /**
  * @param {String} inputString
- * @param {TypeWord[]} types
+ * @param {TypeWord[]?} types = ["adjective", "adjective", "animal"]
  * @return {Promise<MatchResult>}
  */
 export async function matchGfyId(inputString, types = ["adjective", "adjective", "animal"]) {
