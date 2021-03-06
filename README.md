@@ -14,6 +14,11 @@ turns to
 
 # iframe API
 
+Here is the code snipped that you only need, which does two things:
+- creates, appends, awaits the loading of the iframe,
+- incapsulates the message communication logic within an easy to use async function.
+
+This function is not this project specific, and can be reused for any other single function iframe API.
 ```js
 async function initIframeAPI({src, name}) {
     const iframe = document.createElement("iframe");
@@ -47,6 +52,7 @@ async function initIframeAPI({src, name}) {
 }
 ```
 
+Here is the usage example:
 ```js
 /**
  * @param {String} inputString
