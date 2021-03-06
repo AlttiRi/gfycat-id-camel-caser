@@ -109,6 +109,8 @@ window.onmessage = async function(event) {
 };
 ```
 
+Here is the example of the site that uses such approach: [alttiri.github.io/gfycat-id-camel-caser/?iframe=true](https://alttiri.github.io/gfycat-id-camel-caser/?iframe=true)
+
 # Dictionaries
 
 This site uses dictionaries of 
