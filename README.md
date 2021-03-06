@@ -1,5 +1,9 @@
 # [gfycat-id-camel-caser](https://alttiri.github.io/gfycat-id-camel-caser/)
-Turns Gfycat's lowercase ID to CamelCase formatted ID.
+The demo site that turns Gfycat's lowercase ID to CamelCase formatted ID.
+
+![Screenshot](https://user-images.githubusercontent.com/16310547/110212701-c8e7ab80-7ead-11eb-91c8-1b90c35f23b6.png)
+
+---
 
 Gfycat's ID matches such pattern: [Adjective](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/master/dictionaries/adjectives.json)[Adjective](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/master/dictionaries/adjectives.json)[Animal](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/master/dictionaries/animals.json).
 
