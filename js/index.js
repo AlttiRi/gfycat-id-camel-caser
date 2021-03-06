@@ -69,7 +69,6 @@ async function initIframeAPI({src, name}) {
     iframe.setAttribute("referrerpolicy", "no-referrer"); // Hide to GitHub from where you use this iframe.
     iframe.setAttribute("style", "display: none;");
     iframe.setAttribute("src", src);
-
     document.body.append(iframe);
     await new Promise(resolve => {
         iframe.addEventListener("load", resolve);
@@ -101,4 +100,3 @@ function appendInlineScript(code, module = false) {
     module && (script.type = "module");
     document.querySelector("head").append(script);
 }
-
