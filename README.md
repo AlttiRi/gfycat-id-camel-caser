@@ -1,7 +1,9 @@
 # [gfycat-id-camel-caser](https://alttiri.github.io/gfycat-id-camel-caser/)
 The demo site that turns Gfycat's lowercase ID to CamelCase formatted ID.
 
-![Screenshot](https://user-images.githubusercontent.com/16310547/110212701-c8e7ab80-7ead-11eb-91c8-1b90c35f23b6.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/16310547/110212701-c8e7ab80-7ead-11eb-91c8-1b90c35f23b6.png" />
+</p>
 
 ---
 
