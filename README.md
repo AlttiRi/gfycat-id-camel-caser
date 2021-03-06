@@ -20,6 +20,18 @@ turns to
 
 ---
 
+# Search logic
+
+It is trying to match the most longer string by pattern `["adjective", "adjective", "animal"]` ignoring non `[a-zA-Z]` characters.
+If the first is "adjective", then it looks for "adjective", then for "animal".
+If no result has found, it is looking for any word sequence available in both dictionaries (adjectives and animals).
+For example:
+- `34redcat` -> `Red` _("adjective")_
+- `blueredcatdog` -> `BlueRedCat` _("adjective", "adjective", "animal")_
+- `catwhitedogred` -> `CatWhiteDogRed` _(No pattern used)_
+- `happy-wideeyed-bullmastif` -> `HappyWideeyedBull`
+- `happy-wideeyed-bullmastiff` -> `HappyWideeyedBullmastiff`
+
 # iframe API
 
 Here is the code snipped that you only need, which does two things:
@@ -97,7 +109,7 @@ window.onmessage = async function(event) {
 };
 ```
 
-# dictionaries
+# Dictionaries
 
 This site uses dictionaries of 
 [animals](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/master/dictionaries/animals.json) and 
