@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     display: flex;
+    flex-grow: 1;
     justify-content: center;
     align-items: center;
     font: 1em "Fira Sans", sans-serif;
@@ -21,6 +22,17 @@ input:focus {
     outline: none;
     border: 2px solid #cecece;
     margin: 11px;
+}
+
+.column {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 1280px;
+    position: relative;
+    height: 100%;
 }
 
 #readme a {
