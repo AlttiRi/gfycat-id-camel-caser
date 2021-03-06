@@ -26,7 +26,7 @@ It is trying to match the most longer string by pattern `["adjective", "adjectiv
 If the first is "adjective", then it looks for "adjective", then for "animal".
 If no result has found, it is looking for any word sequence available in both dictionaries (adjectives and animals).
 For example:
-- `34redcat` -> `Red` _("adjective")_
+- `34REDCAT` -> `Red` _("adjective")_
 - `blueredcatdog` -> `BlueRedCat` _("adjective", "adjective", "animal")_
 - `catwhitedogred` -> `CatWhiteDogRed` _(No pattern used)_
 - `happy-wideeyed-bullmastif` -> `HappyWideeyedBull`
