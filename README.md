@@ -96,3 +96,13 @@ window.onmessage = async function(event) {
     }, origin);
 };
 ```
+
+# dictionaries
+
+This site uses dictionaries of 
+[animals](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/master/dictionaries/animals.json) and 
+[adjectives](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/master/dictionaries/adjectives.json) words that are compilations of words available there:
+[[1]](https://github.com/dexo568/gfycat-style-urls/),
+[[1.1]](https://gist.github.com/ijmacdowell/8325491),
+[[2]](https://codepen.io/r_p4rk/pen/rxWBwa),
+[[3]](https://github.com/a-type/adjective-adjective-animal/tree/master/lib/lists).
