@@ -41,9 +41,9 @@ class Initializer {
 
 // Well, probably it makes more sense to inject the data instead of the self initialization, but let it be so.
 class Types {
-    /** @type {Set<String>}*/
+    /** @type {Set<String>} */
     static adjectives;
-    /** @type {Set<String>}*/
+    /** @type {Set<String>} */
     static animals;
 
     static getTypes(word) {
@@ -160,7 +160,8 @@ export class WordQueues {
     /**
      * It tolerates to not equal length of "wordArray" and "types" arguments
      * @param {Word[]} wordArray
-     * @param {String[]} types   */
+     * @param {String[]} types
+     */
     static isWordArraySoftMatchesPatten(wordArray, types) {
         if (types.length > wordArray.length) {
             return wordArray
@@ -220,9 +221,3 @@ export class WordQueues {
         return result;
     }
 }
-
-
-
-
-
-
