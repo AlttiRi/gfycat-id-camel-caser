@@ -73,7 +73,7 @@ class Word {
     types;
     constructor(value, types) {
         this.value = value;
-        this.types  = types;
+        this.types = types;
     }
     is(type) {
         return this.types.includes(type);
