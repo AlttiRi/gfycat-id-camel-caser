@@ -74,7 +74,7 @@ async function initIframeAPI({src, name}) {
         iframe.addEventListener("load", resolve);
     });
 
-    let i = 0; const seed = Math.random();
+    let i = 0; const seed = Math.random().toString().substring(2);
     return function() {
         const inputArguments = [...arguments];
         const id = `${name}:${seed}:${i++}`;
