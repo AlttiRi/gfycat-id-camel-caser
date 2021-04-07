@@ -1,5 +1,5 @@
 # [gfycat-id-camel-caser](https://alttiri.github.io/gfycat-id-camel-caser/)
-The demo [site](https://alttiri.github.io/gfycat-id-camel-caser/) that turns Gfycat's lowercase ID to CamelCase formatted ID.
+The demo [site](https://alttiri.github.io/gfycat-id-camel-caser/) that turns Gfycat's lowercase ID to CamelCase formatted ID. It has [*iframe* **API**](#iframe-api).
 
 ---
 
