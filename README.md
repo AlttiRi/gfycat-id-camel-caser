@@ -34,7 +34,7 @@ For example:
 
 # iframe API
 
-While I do not bundle the code to a single file (as a library), to use [`matchGfyId`](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/a05bac34de7ab9026de3d328b22105060a5047de/js/api.js#L27) function on any site (if it allows iframes) you can open [this static site](https://alttiri.github.io/gfycat-id-camel-caser/iframe-api.html) in an iframe and delegate the work to his JS.
+While I do not bundle the code to a single file (as a library), to use [`matchGfyId`](https://github.com/AlttiRi/gfycat-id-camel-caser/blob/a05bac34de7ab9026de3d328b22105060a5047de/js/api.js#L27) function on any site (if it allows iframes) you can open [this static site](https://alttiri.github.io/gfycat-id-camel-caser/iframe-api.html) in an iframe and delegate the work to its JS.
 
 Here is the code snipped that you only need, which does two things:
 - creates, appends, awaits the loading of the iframe,
