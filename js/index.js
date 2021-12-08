@@ -28,8 +28,22 @@ async function main() {
     inputElem.addEventListener("input", inputHandler);
     async function inputHandler(event) {
         /** @type {MatchResult} */
-        const result = await matchGfyId(inputElem.value);
+        const result = await matchGfyId(parseFromUrl(inputElem.value));
         viewHandler(result);
+    }
+
+    function parseFromUrl(textSearch) {
+        if (["https://", "http://"].some(prefix => textSearch.startsWith(prefix))) {
+            try {
+                const url = new URL(textSearch);
+                const match = url.pathname.match(/[^\/]+$/);
+                return match ? match[0] : textSearch;
+            } catch (e) {
+                console.log("[error][url-parsing]", e);
+                return textSearch;
+            }
+        }
+        return textSearch;
     }
 
     /** @param {MatchResult} result */
