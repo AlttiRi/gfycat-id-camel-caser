@@ -40,7 +40,6 @@ async function main() {
                 return match ? match[0] : textSearch;
             } catch (e) {
                 console.log("[error][url-parsing]", e);
-                return textSearch;
             }
         }
         return textSearch;
