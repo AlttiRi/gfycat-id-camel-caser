@@ -50,7 +50,7 @@ async function initIframeAPI({src, name}) {
     iframe.setAttribute("src", src);
     document.body.append(iframe);
     await new Promise(resolve => {
-        iframe.addEventListener("load", resolve);
+        iframe.addEventListener("load", resolve, {once: true});
     });
 
     let i = 0; const seed = Math.random().toString().substring(2);
